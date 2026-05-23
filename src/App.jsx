@@ -537,6 +537,13 @@ const ImageSlider = ({ images, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
   const paginate = (newDirection) => {
     setDirection(newDirection);
     setCurrentIndex((prev) => (prev + newDirection + images.length) % images.length);
