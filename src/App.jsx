@@ -800,7 +800,7 @@ We will confirm your booking via WhatsApp or call within 24 hours.
     const template = generateBookingTemplate();
     const emailSubject = `Booking Request - ${formData.name || 'New Customer'}`;
     
-    window.location.href = `mailto:bookings@hellensbeauty.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(template)}`;
+    window.location.href = `mailto:allasujatha@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(template)}`;
   };
 
   const handleInputChange = (e) => {
