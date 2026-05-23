@@ -159,7 +159,7 @@ const WatermarkOverlay = () => (
     <img
       src={ASSETS.watermark}
       alt="Watermark"
-      className="max-h-[85vh] max-w-[85vw] opacity-10 md:opacity-15"
+      className="max-h-[85vh] max-w-[85vw] opacity-20 md:opacity-30"
       style={{ filter: 'blur(0.2px)' }}
     />
   </div>
