@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
-  Scissors, Phone, Instagram, MapPin, ChevronRight, Star,
+  Scissors, Phone, Instagram, MapPin, ChevronLeft, ChevronRight, Star,
   Calendar, MessageCircle, X, Menu, ArrowUpRight, Sparkles,
   Heart, Clock, Gem, Flower2, Eye, Send, CheckCircle2
 } from 'lucide-react';
@@ -533,6 +533,71 @@ const StorySection = () => {
    SERVICES SECTION
    ═══════════════════════════════════════════════ */
 
+const ImageSlider = ({ images, title }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const paginate = (newDirection) => {
+    setDirection(newDirection);
+    setCurrentIndex((prev) => (prev + newDirection + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative overflow-hidden rounded-[1.5rem] h-72 md:h-80 bg-[#0a0a0a] group">
+      <AnimatePresence mode="wait" custom={direction}>
+        <motion.img
+          key={currentIndex}
+          src={images[currentIndex]}
+          alt={`${title} example ${currentIndex + 1}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          custom={direction}
+          variants={{
+            enter: (d) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
+            center: { x: 0, opacity: 1 },
+            exit: (d) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
+          }}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.15}
+          onDragEnd={(_, info) => {
+            if (info.offset.x > 80) paginate(-1);
+            else if (info.offset.x < -80) paginate(1);
+          }}
+        />
+      </AnimatePresence>
+
+      <button
+        onClick={() => paginate(-1)}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+      >
+        <ChevronLeft size={18} />
+      </button>
+      <button
+        onClick={() => paginate(1)}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+      >
+        <ChevronRight size={18} />
+      </button>
+
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i); }}
+            className={`h-1.5 rounded-full transition-all ${
+              i === currentIndex ? 'bg-[#D4AF37] w-5' : 'bg-white/40 w-1.5'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ServicesSection = () => {
   const serviceTypes = [
     {
@@ -595,17 +660,7 @@ const ServicesSection = () => {
                   </p>
                 </div>
 
-                <div className="space-y-4">
-                  {type.images.map((src, index) => (
-                    <div key={src} className="overflow-hidden rounded-[1.5rem] h-72 md:h-80 bg-[#0a0a0a]">
-                      <img
-                        src={src}
-                        alt={`${type.title} example ${index + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <ImageSlider images={type.images} title={type.title} />
               </div>
             </SectionReveal>
           ))}
