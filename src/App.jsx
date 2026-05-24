@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
   Scissors, Phone, Instagram, MapPin, ChevronLeft, ChevronRight, Star,
-  Calendar, MessageCircle, X, Menu, ArrowUpRight, Sparkles,
+  Calendar, MessageCircle, X, ArrowUpRight, Sparkles,
   Heart, Clock, Gem, Flower2, Eye, Send, CheckCircle2
 } from 'lucide-react';
+import Navigation from './components/Navigation';
 
 /* ───────────────────────────────────────────────
    HELLEN'S HERBAL BEAUTY PARLOUR
@@ -182,109 +183,6 @@ const GoldText = ({ children, className = '' }) => (
     {children}
   </span>
 );
-
-/* ═══════════════════════════════════════════════
-   NAVIGATION
-   ═══════════════════════════════════════════════ */
-
-const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handle = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handle);
-    return () => window.removeEventListener('scroll', handle);
-  }, []);
-
-  const links = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Story', href: '#story' },
-    { label: 'Services', href: '#services' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Contact', href: '#contact' },
-  ];
-
-  return (
-    <>
-      <motion.nav
-        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-500 ${
-          scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#D4AF37]/10' : 'bg-transparent'
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#hero" className="flex items-center gap-3">
-            <img src={ASSETS.logo} alt="Hellen's Logo" className="h-16 w-auto object-contain" />
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-bold tracking-widest" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
-                HELLEN'S
-              </h1>
-              <p className="text-[10px] tracking-[0.2em] uppercase" style={{ color: THEME.colors.textMuted }}>
-                Herbal Beauty Parlour and training institute
-              </p>
-            </div>
-          </a>
-
-          <div className="hidden lg:flex items-center gap-8">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm tracking-wider uppercase hover:text-[#D4AF37] transition-colors duration-300"
-                style={{ color: THEME.colors.textMuted, fontFamily: THEME.fonts.body }}
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="px-5 py-2 text-sm tracking-wider uppercase border border-[#D4AF37]/30 rounded-full hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] transition-all duration-300"
-              style={{ color: THEME.colors.gold }}
-            >
-              Contact
-            </a>
-          </div>
-
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X className="w-6 h-6 text-[#D4AF37]" /> : <Menu className="w-6 h-6 text-[#D4AF37]" />}
-          </button>
-        </div>
-      </motion.nav>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-[80] bg-[#0a0a0a]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            {links.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-2xl tracking-widest uppercase hover:text-[#D4AF37] transition-colors"
-                style={{ color: THEME.colors.text, fontFamily: THEME.fonts.heading }}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-};
 
 /* ═══════════════════════════════════════════════
    HERO SECTION
@@ -644,7 +542,7 @@ const ServicesSection = () => {
             Bridal Makeup Services
           </p>
           <h2 className="text-4xl md:text-6xl font-bold" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.text }}>
-            We Provide <GoldText>3 Bridal Styles</GoldText>
+            We Provide <GoldText>3 varieties</GoldText>
           </h2>
           <p className="text-lg max-w-3xl mx-auto mt-4" style={{ color: THEME.colors.textMuted }}>
             Choose the perfect bridal makeup experience: Normal Bridal, HD Bridal, or Airbrush Bridal. Each service is showcased with three photo examples to help you visualize your dream look.
@@ -800,7 +698,8 @@ We will confirm your booking via WhatsApp or call within 24 hours.
     const template = generateBookingTemplate();
     const emailSubject = `Booking Request - ${formData.name || 'New Customer'}`;
     
-    window.location.href = `mailto:allasujatha@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(template)}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=allasujatha@gmail.com&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(template)}`;
+    window.open(gmailUrl, '_blank');
   };
 
   const handleInputChange = (e) => {
