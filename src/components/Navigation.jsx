@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Menu } from 'lucide-react';
 
@@ -22,6 +22,7 @@ const THEME = {
 const links = [
   { label: 'Home', href: '#hero' },
   { label: 'Story', href: '#story' },
+  { label: 'Bridal', href: '#bridal' },
   { label: 'Services', href: '#services' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Contact', href: '#contact' },
@@ -33,56 +34,62 @@ const Navigation = () => {
 
   useEffect(() => {
     const handle = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handle);
+    window.addEventListener('scroll', handle, { passive: true });
     return () => window.removeEventListener('scroll', handle);
   }, []);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-500 overflow-hidden ${
-          scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#D4AF37]/10' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-500 ${
+          scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#D4AF37]/10 shadow-lg shadow-black/20' : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <a href="#hero" className="flex items-center gap-3 flex-shrink-0 whitespace-nowrap">
-            <img src={ASSETS.logo} alt="Hellen's Logo" className="h-16 w-auto object-contain flex-shrink-0" />
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-bold tracking-widest whitespace-nowrap" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2">
+          <a href="#hero" className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
+            <img src={ASSETS.logo} alt="Hellen's Logo" className="h-10 sm:h-12 md:h-16 w-auto object-contain flex-shrink-0" />
+            <div className="hidden xs:block sm:block min-w-0">
+              <h1 className="text-sm sm:text-base md:text-lg font-bold tracking-widest truncate" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
                 HELLEN'S
               </h1>
-              <p className="text-[10px] tracking-[0.2em] uppercase whitespace-nowrap" style={{ color: THEME.colors.textMuted }}>
+              <p className="text-[8px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase truncate" style={{ color: THEME.colors.textMuted }}>
                 Herbal Beauty Parlour and training institute
               </p>
             </div>
           </a>
 
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-8" role="navigation" aria-label="Main navigation">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm tracking-wider uppercase hover:text-[#D4AF37] transition-colors duration-300 flex-shrink-0"
+                className="text-xs lg:text-sm tracking-wider uppercase hover:text-[#D4AF37] transition-colors duration-300 whitespace-nowrap"
                 style={{ color: THEME.colors.textMuted, fontFamily: THEME.fonts.body }}
               >
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="px-5 py-2 text-sm tracking-wider uppercase border border-[#D4AF37]/30 rounded-full hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] transition-all duration-300 flex-shrink-0"
-              style={{ color: THEME.colors.gold }}
-            >
-              Contact
-            </a>
-          </div>
+          </nav>
 
           <button
-            className="md:hidden p-2 flex-shrink-0"
+            className="md:hidden p-2 flex-shrink-0 touch-target flex items-center justify-center"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X className="w-6 h-6 text-[#D4AF37]" /> : <Menu className="w-6 h-6 text-[#D4AF37]" />}
           </button>
@@ -92,25 +99,36 @@ const Navigation = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-[80] bg-[#0a0a0a]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-[80] bg-[#0a0a0a]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6 sm:gap-8 safe-top safe-bottom"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            {links.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-2xl tracking-widest uppercase hover:text-[#D4AF37] transition-colors"
-                style={{ color: THEME.colors.text, fontFamily: THEME.fonts.heading }}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+            <button
+              className="absolute top-4 right-4 p-3 touch-target"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              <X className="w-7 h-7 text-[#D4AF37]" />
+            </button>
+
+            <nav className="flex flex-col items-center gap-5 sm:gap-8" role="navigation" aria-label="Mobile navigation">
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="text-xl sm:text-2xl md:text-3xl tracking-widest uppercase hover:text-[#D4AF37] transition-colors px-6 py-2"
+                  style={{ color: THEME.colors.text, fontFamily: THEME.fonts.heading }}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.08, duration: 0.3 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
