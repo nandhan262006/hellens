@@ -29,12 +29,13 @@ const services = [
     id: 'waxing',
     title: 'Waxing',
     image: '/images/waxing.jpg',
+    bgSize: '150%',
     items: ['Waxing', 'Honey Wax', 'Reca Wax', 'Gel Wax', 'Roll On Wax', 'Brazilian Wax'],
   },
   {
     id: 'pedicure',
     title: 'Pedicure & Manicure',
-    image: '/images/pedicureandmanicure.jpg',
+    image: '/images/PEDICURE ANDMANICURE.jpg',
     items: [
       'Basic Pedicure & Manicure',
       'Crystal Pedicure & Manicure',
@@ -48,6 +49,7 @@ const services = [
     id: 'facials',
     title: 'Facials',
     image: '/images/facials.jpg',
+    bgSize: '130%',
     items: [
       'Mini Facials',
       'Tan Clear Facials',
@@ -166,7 +168,10 @@ const ServiceCard = ({ service, index, onClick }) => (
       {service.image && (
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-          style={{ backgroundImage: `url('${service.image}')` }}
+          style={{
+            backgroundImage: `url('${service.image}')`,
+            backgroundSize: service.bgSize || 'cover',
+          }}
         />
       )}
     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-[#0a0a0a]/40 to-transparent" />

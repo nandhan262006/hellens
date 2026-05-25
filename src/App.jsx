@@ -49,19 +49,18 @@ const ASSETS = {
   heroPortrait: '/images/owner.png',
   watermark: '/images/watermark.png',
   portfolio: [
-    '/images/bride-red-gold.jpg',      // 01-12-19
-    '/images/bride-blue.jpg',          // 01-12-44
-    '/images/bride-pink-gold.jpg',     // 01-13-17
-    '/images/bride-lightblue.jpg',     // 01-13-41
-    '/images/bride-purple.jpg',        // 01-14-56
-    '/images/bride-white.jpg',         // 01-15-04
-    '/images/bride-red-maternity.jpg', // 01-15-15
-    '/images/bride-pink-green.jpg',    // 01-15-29
-    '/images/bride-pink-pot.jpg',      // 01-15-44
-    '/images/couple.jpg',              // 01-16-42
-    '/images/bride-green.jpg',         // 01-17-23
-    '/images/bride-mint.jpg',          // 01-17-40
-    '/images/bride-yellow-red.jpg',    // 01-18-11
+    '/images/bride-red-gold.jpg',
+    '/images/bride-blue.jpg',
+    '/images/bride-pink-gold.jpg',
+    '/images/bride-lightblue.jpg',
+    '/images/bride-purple.jpg',
+    '/images/bride-white.jpg',
+    '/images/bride-red-maternity.jpg',
+    '/images/bride-pink-green.jpg',
+    '/images/bride-pink-pot.jpg',
+    '/images/couple.jpg',
+    '/images/bride-green.jpg',
+    '/images/bride-yellow-red.jpg',
   ]
 };
 
@@ -997,7 +996,7 @@ const ContactSection = () => {
         <SectionReveal>
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-[#D4AF37]/10 h-[250px] sm:h-[300px] md:h-[400px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.1234567890123!2d80.0487!3d15.5057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzIwLjUiTiA4MMKwMDInNTUuMyJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.0!2d80.0487!3d15.5057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzIwLjUiTiA4MMKwMDInNTUuMyJF!5e0!3m2!1sen!2sin!4v1"
               width="100%"
               height="100%"
               style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(83%)' }}

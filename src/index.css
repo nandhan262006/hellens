@@ -19,6 +19,22 @@
     color: #f5f5f5;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  iframe,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 
   ::selection {
@@ -123,6 +139,76 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
   }
+
+  /* Responsive Container Padding */
+  .section-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Responsive Section Padding */
+  .section-padding {
+    @apply py-16 sm:py-20 md:py-24 lg:py-32;
+  }
+
+  /* Adaptive Grid - auto columns */
+  .grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .grid-auto-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Fluid Typography */
+  .text-fluid-hero {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 0.95;
+  }
+
+  .text-fluid-h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+  }
+
+  .text-fluid-h2 {
+    font-size: clamp(1.75rem, 4vw, 3.75rem);
+    line-height: 1.1;
+  }
+
+  .text-fluid-h3 {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .text-fluid-body {
+    font-size: clamp(0.9rem, 1.5vw, 1.125rem);
+    line-height: 1.6;
+  }
+
+  .text-fluid-small {
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  }
+
+  /* Touch-friendly target */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -144,5 +230,159 @@
     border: 1px solid transparent;
     background: linear-gradient(#111111, #111111) padding-box,
                 linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(183, 110, 121, 0.3)) border-box;
+  }
+
+  /* Safe area insets for notched devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-left {
+    padding-left: env(safe-area-inset-left, 0px);
+  }
+  .safe-right {
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+}
+
+/* ───────────────────────────────────────────────
+   RESPONSIVE BREAKPOINT OVERRIDES
+   Mobile First — Professional Breakpoints
+   ─────────────────────────────────────────────── */
+
+/* Small Phones (≤320px) */
+@media (max-width: 320px) {
+  .section-padding {
+    @apply py-10;
+  }
+  .section-container {
+    @apply px-3;
+  }
+  .grid-auto {
+    grid-template-columns: 1fr;
+  }
+  .grid-auto-2 {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Standard Phones (321px–480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .section-padding {
+    @apply py-12;
+  }
+  .grid-auto {
+    grid-template-columns: 1fr;
+  }
+  .grid-auto-2 {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+/* Large Phones (481px–767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .grid-auto {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-auto-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .container {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+  }
+}
+
+/* Small Tablets (768px–991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .grid-auto {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-auto-2 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .container {
+    max-width: 720px;
+    padding: 20px;
+    margin: auto;
+  }
+}
+
+/* Large Tablets / iPads (992px–1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .grid-auto {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-auto-2 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .container {
+    max-width: 960px;
+    padding: 24px;
+    margin: auto;
+  }
+}
+
+/* Standard Laptop (1200px–1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .grid-auto {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-auto-2 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .container {
+    max-width: 1140px;
+    padding: 30px;
+    margin: auto;
+  }
+}
+
+/* Large Laptop / Desktop (1440px–1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .grid-auto {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .grid-auto-2 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .container {
+    max-width: 1320px;
+    padding: 40px;
+    margin: auto;
+  }
+}
+
+/* 4K / Ultra Wide (≥1920px) */
+@media (min-width: 1920px) {
+  .grid-auto {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-auto-2 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .container {
+    max-width: 1600px;
+    margin: auto;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero-landscape {
+    min-height: 120vh;
   }
 }
