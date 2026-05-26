@@ -186,16 +186,16 @@ const ServiceCard = ({ service, index, onClick }) => (
         }}
       />
     </div>
-    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
+    <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2">
       <div
-        className="backdrop-blur-xl rounded-lg px-3 py-2 sm:px-4 sm:py-2.5"
+        className="rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 h-12 sm:h-14 flex flex-col justify-center"
         style={{
-          background: 'rgba(17, 17, 17, 0.45)',
-          border: '1px solid rgba(212, 175, 55, 0.15)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+          background: 'linear-gradient(to top, rgba(10, 10, 10, 0.85) 60%, rgba(10, 10, 10, 0.4))',
+          border: '1px solid rgba(212, 175, 55, 0.12)',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <h3 className="text-white font-bold text-xs sm:text-sm md:text-base tracking-wide"
+        <h3 className="text-white font-bold text-[11px] sm:text-sm md:text-base tracking-wide leading-tight truncate"
           style={{ fontFamily: FONTS.heading }}
         >
           {service.title}

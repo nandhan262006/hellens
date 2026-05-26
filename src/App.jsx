@@ -152,7 +152,7 @@ const FloatingInstagram = () => (
     href="https://www.instagram.com/makeupbysujatha_ongole/"
     target="_blank"
     rel="noopener noreferrer"
-    className="fixed bottom-4 sm:bottom-8 right-[4.5rem] sm:right-24 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl"
+    className="fixed bottom-20 sm:bottom-28 right-4 sm:right-8 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl"
     style={{ backgroundColor: '#E1306C' }}
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.95 }}
@@ -210,7 +210,7 @@ const HeroSection = () => {
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
-    <section id="hero" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Animated Background Gradients */}
       <div className="absolute inset-0">
         <motion.div
@@ -446,79 +446,15 @@ const StorySection = () => {
    SERVICES SECTION
    ═══════════════════════════════════════════════ */
 
-const ImageSlider = ({ images, title }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      paginate(1);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [images.length]);
-
-  const paginate = (newDirection) => {
-    setDirection(newDirection);
-    setCurrentIndex((prev) => (prev + newDirection + images.length) % images.length);
-  };
-
-  return (
-    <div className="relative overflow-hidden rounded-xl sm:rounded-[1.5rem] h-56 sm:h-64 md:h-80 bg-[#0a0a0a] group">
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.img
-          key={currentIndex}
-          src={images[currentIndex]}
-          alt={`${title} example ${currentIndex + 1}`}
-          className="absolute inset-0 w-full h-full object-cover"
-          custom={direction}
-          variants={{
-            enter: (d) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
-            center: { x: 0, opacity: 1 },
-            exit: (d) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
-          }}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.15}
-          onDragEnd={(_, info) => {
-            if (info.offset.x > 80) paginate(-1);
-            else if (info.offset.x < -80) paginate(1);
-          }}
-        />
-      </AnimatePresence>
-
-      <button
-        onClick={() => paginate(-1)}
-        className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 md:opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/80 touch-target"
-        aria-label="Previous image"
-      >
-        <ChevronLeft size={16} />
-      </button>
-      <button
-        onClick={() => paginate(1)}
-        className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 md:opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/80 touch-target"
-        aria-label="Next image"
-      >
-        <ChevronRight size={16} />
-      </button>
-
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i); }}
-            className={`h-1.5 rounded-full transition-all ${
-              i === currentIndex ? 'bg-[#D4AF37] w-5' : 'bg-white/40 w-1.5'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+const ImageSlider = ({ images, title }) => (
+  <div className="relative overflow-hidden rounded-xl sm:rounded-[1.5rem] h-80 sm:h-96 md:h-[28rem] bg-[#0a0a0a]">
+    <img
+      src={images[0]}
+      alt={title}
+      className="absolute inset-0 w-full h-full object-cover object-top"
+    />
+  </div>
+);
 
 const ServicesSection = () => {
   const serviceTypes = [
@@ -526,27 +462,23 @@ const ServicesSection = () => {
       title: 'Normal Bridal Makeup',
       desc: 'Classic bridal styling for a timeless and elegant wedding day look.',
       images: [
-        '/images/bride-red-gold.jpg',
-        '/images/bride-blue.jpg',
-        '/images/bride-pink-gold.jpg',
+        '/images/normalmakeup.jpeg',
+        
       ],
     },
     {
       title: 'HD Bridal Makeup',
       desc: 'Flawless makeup designed to look perfect in photos, video, and high-definition camera work.',
       images: [
-        '/images/bride-purple.jpg',
-        '/images/bride-lightblue.jpg',
-        '/images/bride-white.jpg',
+        '/images/hdmakeup.jpeg',
+       
       ],
     },
     {
       title: 'Airbrush Bridal Makeup',
       desc: 'Airbrush application for a soft, glowing finish that lasts throughout the celebration.',
       images: [
-        '/images/bride-yellow-red.jpg',
-        '/images/bride-green.jpg',
-        '/images/bride-pink-green.jpg',
+        '/images/airbrush.jpeg',
       ],
     },
   ];
@@ -562,7 +494,7 @@ const ServicesSection = () => {
             Bridal <GoldText>Collection</GoldText>
           </h2>
           <p className="text-fluid-body max-w-3xl mx-auto mt-3 sm:mt-4" style={{ color: THEME.colors.textMuted }}>
-            Choose the perfect bridal makeup experience: Normal Bridal, HD Bridal, or Airbrush Bridal. Each service is showcased with three photo examples to help you visualize your dream look.
+            Choose the perfect bridal makeup experience: Normal Bridal, HD Bridal, or Airbrush Bridal. Each service is showcased with a featured photo to help you visualize your dream look.
           </p>
         </SectionReveal>
 
@@ -603,7 +535,7 @@ const PortfolioSection = () => {
 
   const images = ASSETS.portfolio.map((src, i) => ({
     src,
-    alt: `Bridal makeup work ${i + 1}`,
+    alt: `Bridal makeup by Alla Sujatha at Hellen's Herbal Beauty Parlour in Ongole #${i + 1}`,
     span: i % 5 === 0 ? 'md:col-span-2 md:row-span-2' : i % 3 === 0 ? 'md:col-span-2' : '',
   }));
 
@@ -693,32 +625,25 @@ const EmailBookingSection = () => {
 
   const generateBookingTemplate = () => {
     const template = `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-HELLEN'S HERBAL BEAUTY PARLOUR
-BOOKING REQUEST
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*HELLEN'S HERBAL BEAUTY PARLOUR*
+_BOOKING REQUEST_
 
-NAME: ${formData.name || '[Your Full Name]'}
-PHONE: ${formData.phone || '[Your Contact Number]'}
+*NAME:* ${formData.name || '[Your Full Name]'}
+*PHONE:* ${formData.phone || '[Your Contact Number]'}
 
-SERVICE: ${formData.service || '[Select Service]'}
-PREFERRED DATE: ${formData.date || '[Your Preferred Date]'}
+*SERVICE:* ${formData.service || '[Select Service]'}
+*PREFERRED DATE:* ${formData.date || '[Your Preferred Date]'}
 
-SPECIAL REQUESTS:
+*SPECIAL REQUESTS:*
 ${formData.specialRequests || '[Any special requests or requirements]'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-We will confirm your booking via WhatsApp or call within 24 hours.
     `.trim();
     return template;
   };
 
-  const handleSendEmail = () => {
+  const handleSendWhatsApp = () => {
     const template = generateBookingTemplate();
-    const emailSubject = `Booking Request - ${formData.name || 'New Customer'}`;
-    
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=allasujatha@gmail.com&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(template)}`;
-    window.open(gmailUrl, '_blank');
+    const whatsappUrl = `https://wa.me/919848833609?text=${encodeURIComponent(template)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   const handleInputChange = (e) => {
@@ -734,10 +659,10 @@ We will confirm your booking via WhatsApp or call within 24 hours.
             Alternative Booking
           </p>
           <h2 className="text-fluid-h2 font-bold" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.text }}>
-            Book Via <GoldText>Email</GoldText>
+            Book Via <GoldText>WhatsApp</GoldText>
           </h2>
           <p className="text-fluid-body mt-3 sm:mt-4 max-w-2xl mx-auto" style={{ color: THEME.colors.textMuted }}>
-            Prefer sending a detailed email? Fill in your details below and we'll generate a beautifully formatted booking request.
+            Prefer booking via WhatsApp? Fill in your details below and we'll generate a pre-filled message ready to send.
           </p>
         </SectionReveal>
 
@@ -817,7 +742,7 @@ We will confirm your booking via WhatsApp or call within 24 hours.
                 </label>
               </div>
 
-              {/* Email Template Preview */}
+              {/* Message Preview */}
               <motion.div
                 className="p-4 rounded-xl bg-[#0a0a0a] border border-[#D4AF37]/10"
                 initial={{ opacity: 0 }}
@@ -832,17 +757,17 @@ We will confirm your booking via WhatsApp or call within 24 hours.
 
               {/* Send Button */}
               <motion.button
-                onClick={handleSendEmail}
-                className="relative w-full py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8942E] text-[#0a0a0a] font-bold tracking-wider uppercase rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all duration-300"
+                onClick={handleSendWhatsApp}
+                className="relative w-full py-4 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold tracking-wider uppercase rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(37,211,102,0.3)] transition-all duration-300"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
               >
-                <Send className="w-5 h-5" />
-                Generate & Send Email
+                <MessageCircle className="w-5 h-5" />
+                Send via WhatsApp
               </motion.button>
 
               <p className="text-center text-xs" style={{ color: THEME.colors.textMuted }}>
-                💌 Click the button above to open your email client with the pre-filled booking request.
+                Click the button above to open WhatsApp with your pre-filled booking message.
               </p>
             </div>
           </motion.div>
@@ -851,8 +776,8 @@ We will confirm your booking via WhatsApp or call within 24 hours.
         {/* Info Cards */}
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-12 lg:mt-16">
           {[
-            { icon: <Send className="w-6 h-6" />, title: 'Easy Booking', desc: 'Pre-filled template ready to send' },
-            { icon: <CheckCircle2 className="w-6 h-6" />, title: 'Instant Confirmation', desc: 'Confirmation via WhatsApp or call' },
+            { icon: <MessageCircle className="w-6 h-6" />, title: 'Easy Booking', desc: 'Pre-filled message ready to send' },
+            { icon: <CheckCircle2 className="w-6 h-6" />, title: 'Instant Confirmation', desc: 'Quick response via WhatsApp' },
             { icon: <Gem className="w-6 h-6" />, title: 'Personalized', desc: 'Customize your booking preferences' },
           ].map((item, i) => (
             <SectionReveal key={item.title} delay={i * 0.1}>
@@ -913,7 +838,7 @@ const InstagramSection = () => {
                 className="relative block aspect-square rounded-lg sm:rounded-xl overflow-hidden group border border-[#D4AF37]/10"
                 whileHover={{ scale: 1.05 }}
               >
-                <img src={src} alt={`Instagram post ${i + 1}`} className="w-full h-full object-cover" />
+                <img src={src} alt={`Hellen's Herbal Beauty Parlour Ongole bridal makeup look ${i + 1}`} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#0a0a0a]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Instagram className="w-5 h-5 sm:w-8 sm:h-8 text-[#D4AF37]" />
                 </div>

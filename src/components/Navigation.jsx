@@ -63,9 +63,9 @@ const Navigation = () => {
           <a href="#hero" className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
             <img src={ASSETS.logo} alt="Hellen's Logo" className="h-10 sm:h-12 md:h-16 w-auto object-contain flex-shrink-0" />
             <div className="hidden xs:block sm:block min-w-0">
-              <h1 className="text-sm sm:text-base md:text-lg font-bold tracking-widest truncate" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
+              <div className="text-sm sm:text-base md:text-lg font-bold tracking-widest truncate" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
                 HELLEN'S
-              </h1>
+              </div>
               <p className="text-[8px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase truncate" style={{ color: THEME.colors.textMuted }}>
                 Herbal Beauty Parlour and training institute
               </p>
