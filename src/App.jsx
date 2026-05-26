@@ -45,7 +45,7 @@ const THEME = {
    ═══════════════════════════════════════════════ */
 const ASSETS = {
   logo: '/images/logo.png',
-  owner: '/images/owner.png',
+  owner: '/images/owner.jpg',
   heroPortrait: '/images/owner.jpg',
   watermark: '/images/watermark.png',
   portfolio: [
