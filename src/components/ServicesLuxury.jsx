@@ -174,7 +174,7 @@ const ServiceCard = ({ service, index, onClick }) => (
           }}
         />
       )}
-    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-[#0a0a0a]/40 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-[#0a0a0a]/10 to-transparent" />
     <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
       <div
@@ -186,21 +186,21 @@ const ServiceCard = ({ service, index, onClick }) => (
         }}
       />
     </div>
-    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
+    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
       <div
-        className="backdrop-blur-xl rounded-xl px-4 py-3 sm:px-5 sm:py-4"
+        className="backdrop-blur-xl rounded-lg px-3 py-2 sm:px-4 sm:py-2.5"
         style={{
-          background: 'rgba(17, 17, 17, 0.7)',
+          background: 'rgba(17, 17, 17, 0.45)',
           border: '1px solid rgba(212, 175, 55, 0.15)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <h3 className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl tracking-wide"
-          style={{ fontFamily: FONTS.heading, textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}
+        <h3 className="text-white font-bold text-xs sm:text-sm md:text-base tracking-wide"
+          style={{ fontFamily: FONTS.heading }}
         >
           {service.title}
         </h3>
-        <p className="text-[8px] sm:text-[10px] tracking-[0.2em] uppercase mt-0.5"
+        <p className="text-[7px] sm:text-[9px] tracking-[0.2em] uppercase mt-0.5"
           style={{ color: COLORS.gold }}
         >
           Click to explore
