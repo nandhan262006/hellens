@@ -46,7 +46,7 @@ const THEME = {
 const ASSETS = {
   logo: '/images/logo.png',
   owner: '/images/owner.jpg',
-  heroPortrait: '/images/owner.jpg',
+  heroPortrait: '/images/owner1.png',
   watermark: '/images/watermark.png',
   portfolio: [
     '/images/bride-red-gold.jpg',
