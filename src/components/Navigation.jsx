@@ -61,7 +61,7 @@ const Navigation = () => {
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2">
           <a href="#hero" className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
-            <img src={ASSETS.logo} alt="Hellen's Logo" className="h-10 sm:h-12 md:h-16 w-auto object-contain flex-shrink-0" />
+            <img src={ASSETS.logo} alt="Hellen's Herbal Beauty Parlour & Training Institute Ongole" className="h-10 sm:h-12 md:h-16 w-auto object-contain flex-shrink-0" />
             <div className="hidden xs:block sm:block min-w-0">
               <div className="text-sm sm:text-base md:text-lg font-bold tracking-widest truncate" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
                 HELLEN'S

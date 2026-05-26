@@ -156,13 +156,16 @@ const GoldText = ({ children, className = '' }) => (
 );
 
 const ServiceCard = ({ service, index, onClick }) => (
-  <motion.div
+  <motion.article
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
     transition={{ duration: 0.6, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
     className="group relative cursor-pointer rounded-xl sm:rounded-[1.5rem] overflow-hidden border border-[#D4AF37]/10 bg-[#111111]/80 h-52 sm:h-56 md:h-64 lg:h-72"
     onClick={() => onClick(service)}
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(service); } }}
   >
       <div className="absolute inset-0" style={{ backgroundColor: '#161616' }} />
       {service.image && (
@@ -218,7 +221,7 @@ const ServiceCard = ({ service, index, onClick }) => (
         <Sparkles className="w-4 h-4" style={{ color: COLORS.gold }} />
       </div>
     </div>
-  </motion.div>
+  </motion.article>
 );
 
 const ServicePopup = ({ service, onClose }) => {
@@ -332,7 +335,7 @@ const ServicesLuxury = () => {
   const closePopup = useCallback(() => setSelectedService(null), []);
 
   return (
-    <section id="services" className="relative section-py" style={{ backgroundColor: '#0a0a0a' }}>
+    <section id="services" className="relative section-py" style={{ backgroundColor: '#0a0a0a' }} aria-label="All Beauty Services at Hellen's Herbal Beauty Parlour Ongole">
       <div className="w-full max-w-7xl mx-auto container-px relative z-10">
         <SectionReveal className="text-center mb-10 sm:mb-12 md:mb-16">
           <p className="text-[0.6rem] sm:text-xs md:text-sm tracking-[0.3em] uppercase mb-3 sm:mb-4" style={{ color: COLORS.gold }}>

@@ -58,6 +58,33 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #D4AF37;
   }
+
+  /* Focus visible styles for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Skip to main content link (hidden but available for screen readers) */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #D4AF37;
+    color: #0a0a0a;
+    padding: 8px 16px;
+    z-index: 10000;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
 }
 
 @layer components {

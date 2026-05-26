@@ -210,7 +210,7 @@ const HeroSection = () => {
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
-    <section id="hero" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
+    <section id="hero" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20" aria-label="Hero - Hellen's Herbal Beauty Parlour Ongole">
       {/* Animated Background Gradients */}
       <div className="absolute inset-0">
         <motion.div
@@ -326,8 +326,9 @@ const HeroSection = () => {
             <div className="relative rounded-[2rem] overflow-hidden border border-[#D4AF37]/20 shadow-2xl">
               <img
                 src={ASSETS.heroPortrait}
-                alt="Alla Sujatha — Founder & Lead Artist"
+                alt="Alla Sujatha — Founder & Lead Makeup Artist at Hellen's Herbal Beauty Parlour in Ongole, Andhra Pradesh"
                 className="w-full h-full object-cover"
+                loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
             </div>
@@ -379,14 +380,14 @@ const StorySection = () => {
   ];
 
   return (
-    <section id="story" className="relative section-py overflow-hidden">
+    <section id="story" className="relative section-py overflow-hidden" aria-label="Our Story - The journey of Hellen's Herbal Beauty Parlour in Ongole">
       <div className="w-full max-w-7xl mx-auto container-px">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           <SectionReveal>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-[#D4AF37]/10 to-[#B76E79]/10 rounded-[2rem] blur-xl" />
               <div className="relative rounded-[2rem] overflow-hidden border border-[#D4AF37]/10">
-                <img src={ASSETS.owner} alt="Alla Sujatha at work" className="w-full aspect-[4/5] object-cover" />
+                <img src={ASSETS.owner} alt="Alla Sujatha — bridal makeup artist at Hellen's Herbal Beauty Parlour in Ongole" className="w-full aspect-[4/5] object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
                   <p className="text-fluid-h3 font-bold" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.text }}>
@@ -450,8 +451,9 @@ const ImageSlider = ({ images, title }) => (
   <div className="relative overflow-hidden rounded-xl sm:rounded-[1.5rem] h-80 sm:h-96 md:h-[28rem] bg-[#0a0a0a]">
     <img
       src={images[0]}
-      alt={title}
+      alt={`${title} at Hellen's Herbal Beauty Parlour in Ongole`}
       className="absolute inset-0 w-full h-full object-cover object-top"
+      loading="lazy"
     />
   </div>
 );
@@ -484,7 +486,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="bridal" className="relative section-py">
+    <section id="bridal" className="relative section-py" aria-label="Bridal Makeup Services Ongole">
       <div className="w-full max-w-7xl mx-auto container-px">
         <SectionReveal className="text-center mb-10 sm:mb-12 md:mb-16">
               <p className="text-[0.6rem] sm:text-xs md:text-sm tracking-[0.3em] uppercase mb-3 sm:mb-4" style={{ color: THEME.colors.gold }}>
@@ -535,12 +537,12 @@ const PortfolioSection = () => {
 
   const images = ASSETS.portfolio.map((src, i) => ({
     src,
-    alt: `Bridal makeup by Alla Sujatha at Hellen's Herbal Beauty Parlour in Ongole #${i + 1}`,
+    alt: `Bridal makeup in Ongole by Alla Sujatha at Hellen's Herbal Beauty Parlour ${i + 1}`,
     span: i % 5 === 0 ? 'md:col-span-2 md:row-span-2' : i % 3 === 0 ? 'md:col-span-2' : '',
   }));
 
   return (
-    <section id="portfolio" className="relative section-py">
+    <section id="portfolio" className="relative section-py" aria-label="Bridal Makeup Portfolio Gallery - Hellen's Herbal Beauty Parlour Ongole">
       <div className="w-full max-w-7xl mx-auto container-px">
         <SectionReveal className="text-center mb-12 sm:mb-16 lg:mb-20">
           <p className="text-fluid-small tracking-[0.3em] uppercase mb-3 sm:mb-4" style={{ color: THEME.colors.gold }}>
@@ -554,7 +556,7 @@ const PortfolioSection = () => {
         <div className="grid-portfolio">
           {images.map((img, i) => (
             <SectionReveal key={i} delay={i * 0.05}>
-              <motion.div
+              <motion.article
                 className="relative w-full aspect-square md:aspect-[4/5] rounded-lg sm:rounded-xl overflow-hidden cursor-pointer group border border-[#D4AF37]/10"
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelected(img)}
@@ -569,7 +571,7 @@ const PortfolioSection = () => {
                 <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-fluid-small font-medium" style={{ color: THEME.colors.gold }}>View Details</p>
                 </div>
-              </motion.div>
+              </motion.article>
             </SectionReveal>
           ))}
         </div>
@@ -652,7 +654,7 @@ ${formData.specialRequests || '[Any special requests or requirements]'}
   };
 
   return (
-    <section className="relative section-py">
+    <section aria-label="Book Appointment via WhatsApp for Hellen's Beauty Parlour Ongole" className="relative section-py">
       <div className="w-full max-w-4xl mx-auto container-px">
         <SectionReveal className="text-center mb-10 sm:mb-12 md:mb-16">
           <p className="text-fluid-small tracking-[0.3em] uppercase mb-3 sm:mb-4" style={{ color: THEME.colors.gold }}>
@@ -807,7 +809,7 @@ const InstagramSection = () => {
   const topImages = ASSETS.portfolio.slice(0, 6);
 
   return (
-    <section className="relative section-py overflow-hidden">
+    <section aria-label="Follow Hellen's Herbal Beauty Parlour Ongole on Instagram" className="relative section-py overflow-hidden">
       <div className="w-full max-w-7xl mx-auto container-px">
         <SectionReveal className="text-center mb-8 sm:mb-12 lg:mb-16">
           <p className="text-fluid-small tracking-[0.3em] uppercase mb-3 sm:mb-4" style={{ color: THEME.colors.gold }}>
@@ -838,7 +840,7 @@ const InstagramSection = () => {
                 className="relative block aspect-square rounded-lg sm:rounded-xl overflow-hidden group border border-[#D4AF37]/10"
                 whileHover={{ scale: 1.05 }}
               >
-                <img src={src} alt={`Hellen's Herbal Beauty Parlour Ongole bridal makeup look ${i + 1}`} className="w-full h-full object-cover" />
+                <img src={src} alt={`Bridal makeup look ${i + 1} by Hellen's Herbal Beauty Parlour in Ongole, Andhra Pradesh`} className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-[#0a0a0a]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Instagram className="w-5 h-5 sm:w-8 sm:h-8 text-[#D4AF37]" />
                 </div>
@@ -884,7 +886,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="relative section-py">
+    <section id="contact" className="relative section-py" aria-label="Contact Hellen's Herbal Beauty Parlour Ongole">
       <div className="w-full max-w-7xl mx-auto container-px">
         <SectionReveal className="text-center mb-10 sm:mb-12 lg:mb-20">
           <p className="text-fluid-small tracking-[0.3em] uppercase mb-3 sm:mb-4" style={{ color: THEME.colors.gold }}>
@@ -928,7 +930,7 @@ const ContactSection = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Hellen's Location"
+              title="Hellen's Herbal Beauty Parlour location in Ongole, Andhra Pradesh"
             />
             <div className="absolute inset-0 pointer-events-none border border-[#D4AF37]/10 rounded-xl sm:rounded-2xl" />
           </div>
@@ -947,7 +949,7 @@ const Footer = () => (
     <div className="w-full max-w-7xl mx-auto container-px">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8">
         <div className="flex items-center gap-3 sm:gap-4">
-          <img src={ASSETS.logo} alt="Hellen's Logo" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
+          <img src={ASSETS.logo} alt="Hellen's Herbal Beauty Parlour & Training Institute Ongole" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
           <div>
             <h3 className="text-lg sm:text-xl font-bold tracking-wider" style={{ fontFamily: THEME.fonts.heading, color: THEME.colors.gold }}>
               HELLEN'S
@@ -980,7 +982,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-[#D4AF37]/5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[10px] sm:text-xs text-center sm:text-left" style={{ color: THEME.colors.textMuted }}>
-        <p>© 2024 Hellen&apos;s Herbal Beauty Parlour. All rights reserved.</p>
+        <p>© 2026 Hellen&apos;s Herbal Beauty Parlour & Training Institute. All rights reserved.</p>
         <p>Crafted with love by Alla Sujatha — Ongole, Andhra Pradesh</p>
       </div>
     </div>
@@ -993,7 +995,9 @@ const Footer = () => (
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden" style={{ fontFamily: THEME.fonts.body }}>
+    <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <div className="relative min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden" style={{ fontFamily: THEME.fonts.body }}>
       {/* Global Styles Injection */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -1116,7 +1120,7 @@ export default function App() {
       <ScrollProgress />
       <Navigation />
 
-      <main>
+      <main id="main-content">
         <HeroSection />
         <StorySection />
         <ServicesSection />
@@ -1131,5 +1135,6 @@ export default function App() {
       <FloatingInstagram />
       <FloatingWhatsApp />
     </div>
+    </>
   );
 }
