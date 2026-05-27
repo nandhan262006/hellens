@@ -114,11 +114,13 @@ const services = [
       'Ceratine',
       'Hair Botax',
       'Nanoplastia',
+      'Permanent Straightening',
+      'Permanent Smoothing',
     ],
   },
   {
     id: 'aesthetic',
-    title: 'Aesthetic Treatments',
+    title: 'Aesthetics',
     image: '/images/ASTHETIC TREATMENTS.jpg',
     items: [
       'Hydro Facials',
