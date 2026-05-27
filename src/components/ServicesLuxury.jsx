@@ -129,13 +129,8 @@ const services = [
       'Permanent Eyebrows',
       'Permanent Lipstick',
       'Permanent Makeup',
+      'Permanent Lashes',
     ],
-  },
-  {
-    id: 'lashes',
-    title: 'Permanent Lashes',
-    image: '/images/PERMENANT LASHES.jpg',
-    items: ['Permanent Lashes'],
   },
 ];
 
