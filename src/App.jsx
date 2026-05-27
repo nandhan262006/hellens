@@ -49,8 +49,8 @@ const ASSETS = {
   heroPortrait: '/images/owner1.png',
   watermark: '/images/watermark.png',
   portfolio: [
-    '/images/bride-red-gold.jpg',
-    '/images/bride-blue.jpg',
+    '/images/first.jpeg',
+    '/images/SECOND.jpeg',
     '/images/bride-pink-gold.jpg',
     '/images/bride-lightblue.jpg',
     '/images/bride-purple.jpg',
@@ -173,7 +173,7 @@ const GlobalBackground = () => (
         backgroundSize: '55% auto',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        opacity: 0.25,
+        opacity: 0.1,
         mixBlendMode: 'soft-light',
       }}
     />

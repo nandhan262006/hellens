@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /hellens-parlour/
 
-Sitemap: https://hellensbeautyparlour.com/sitemap.xml
+# Crawl-delay: 10
+
+# Sitemaps
+Sitemap: https://hellensbeauty.in/sitemap.xml
+
+# Host
+Host: https://hellensbeauty.in
